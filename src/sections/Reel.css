@@ -1,0 +1,74 @@
+/* ============================================================
+   Reel Section — 300vh scroll-driven expansion
+   ============================================================ */
+
+.reel {
+  position: relative;
+  height: 300vh;
+  background: #0d0d0d;
+}
+
+/* Sticky inner — stays fixed during scroll travel */
+.reel__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── "Our Reel" label ───────────────────────────────────── */
+.reel__label {
+  position: absolute;
+  bottom: 12vh;
+  left: clamp(1.5rem, 6vw, 7rem);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.reel__label-eyebrow {
+  display: block;
+  font-family: var(--ui-font);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.reel__label-title {
+  font-family: var(--display-font);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+/* ── Overlay text (fades in at 60% progress) ────────────── */
+.reel__overlay-text {
+  position: absolute;
+  bottom: 2.5rem;
+  right: clamp(1.5rem, 4vw, 4rem);
+  z-index: 3;
+  font-family: var(--ui-font);
+  font-size: clamp(0.7rem, 1.1vw, 0.85rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+}
+
+/* ── Mobile ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .reel__label {
+    bottom: auto;
+    top: 8vh;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  .reel__overlay-text {
+    display: none;
+  }
+}

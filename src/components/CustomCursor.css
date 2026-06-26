@@ -1,0 +1,47 @@
+/* ============================================================
+   Custom Cursor
+   ============================================================ */
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffffff;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  z-index: 9998;
+  will-change: transform;
+  /* Smooth the size/color transitions for hover state */
+  transition:
+    width  0.25s ease,
+    height 0.25s ease,
+    border-color 0.25s ease,
+    margin 0.25s ease;
+}
+
+/* Hover state — ring expands to 2.5× (90px) and turns accent color */
+.cursor-ring--hover {
+  width: 90px;
+  height: 90px;
+  border-color: #9b5de5;
+  /* Re-center: original offset is -18px (half of 36px).
+     New offset should be -45px (half of 90px).
+     We compensate via negative margin so the translate stays correct. */
+  margin-left: -27px;  /* 18 - 45 = -27 */
+  margin-top:  -27px;
+}

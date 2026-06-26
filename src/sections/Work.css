@@ -1,0 +1,48 @@
+/* ============================================================
+   Work Section
+   ============================================================ */
+
+.work {
+  padding: clamp(5rem, 10vw, 10rem) clamp(1.5rem, 6vw, 7rem);
+  background: var(--brand-black);
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+.work__header {
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.work__heading {
+  font-family: var(--display-font);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.work__subheading {
+  font-family: var(--ui-font);
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  color: var(--text-secondary);
+  max-width: 480px;
+}
+
+/* ── Grid ───────────────────────────────────────────────── */
+.work__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+@media (min-width: 769px) {
+  .work__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .work__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

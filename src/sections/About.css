@@ -1,0 +1,103 @@
+/* ============================================================
+   About Section
+   ============================================================ */
+
+.about {
+  position: relative;
+  padding: clamp(5rem, 10vw, 10rem) clamp(1.5rem, 6vw, 7rem);
+  background: #0d0d0d;
+  overflow: hidden;
+}
+
+/* Radial gradient decorative bg */
+.about__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 0%,
+    rgba(155, 93, 229, 0.05) 0%,
+    transparent 70%
+  );
+}
+
+.about__content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+}
+
+/* ── Heading ────────────────────────────────────────────── */
+.about__heading {
+  font-family: var(--display-font);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+}
+
+/* ── Bio ────────────────────────────────────────────────── */
+.about__bio {
+  font-family: var(--ui-font);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 640px;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+/* ── Stats ──────────────────────────────────────────────── */
+.about__stats {
+  display: flex;
+  gap: clamp(2rem, 6vw, 5rem);
+  flex-wrap: wrap;
+}
+
+.about__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.about__stat-number-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.1rem;
+}
+
+.about__stat-number {
+  font-family: var(--display-font);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  min-width: 2ch;
+}
+
+.about__stat-suffix {
+  font-family: var(--display-font);
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.about__stat-label {
+  font-family: var(--ui-font);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+/* ── Mobile ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .about__stats {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
