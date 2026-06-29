@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { Menu, X } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
+import { SERVICES } from '../data/services';
 import './Navbar.css';
 
 const NAV_LINKS = [
@@ -98,10 +99,18 @@ export default function Navbar() {
     return isHomePage ? href : `/${href}`;
   }
 
+  function getServiceHref(slug) {
+    return `/services/${slug}`;
+  }
+
   function handleAnchorClick(e, href) {
     if (scrollTo(href)) {
       e.preventDefault();
     }
+  }
+
+  function closeMenu() {
+    setMenuOpen(false);
   }
 
   return (
@@ -115,14 +124,45 @@ export default function Navbar() {
         {/* Desktop links */}
         <ul className="navbar__links" role="list">
           {NAV_LINKS.map(({ label, href }) => (
-            <li key={label}>
-              <a
-                href={getHref(href)}
-                className="navbar__link"
-                onClick={(e) => handleAnchorClick(e, href)}
-              >
-                {label}
-              </a>
+            <li
+              key={label}
+              className={label === 'Services' ? 'navbar__item navbar__item--services' : 'navbar__item'}
+            >
+              {label === 'Services' ? (
+                <>
+                  <a
+                    href={getHref(href)}
+                    className="navbar__link navbar__link--services"
+                    aria-haspopup="true"
+                    onClick={(e) => handleAnchorClick(e, href)}
+                  >
+                    {label}
+                    <ChevronDown size={14} aria-hidden="true" />
+                  </a>
+                  <div className="navbar__dropdown" aria-label="Services submenu">
+                    {SERVICES.map((service) => (
+                      <a
+                        key={service.slug}
+                        href={getServiceHref(service.slug)}
+                        className="navbar__dropdown-link"
+                        style={{ '--service-accent': service.accent }}
+                        data-cursor="hover"
+                      >
+                        <span>{service.label}</span>
+                        <small>{service.eyebrow}</small>
+                      </a>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <a
+                  href={getHref(href)}
+                  className="navbar__link"
+                  onClick={(e) => handleAnchorClick(e, href)}
+                >
+                  {label}
+                </a>
+              )}
             </li>
           ))}
         </ul>
@@ -151,7 +191,7 @@ export default function Navbar() {
       >
         <ul className="navbar__overlay-links" role="list">
           {NAV_LINKS.map(({ label, href }) => (
-            <li key={label}>
+            <li key={label} className={label === 'Services' ? 'navbar__overlay-item--services' : undefined}>
               <a
                 href={getHref(href)}
                 className="navbar__overlay-link"
@@ -160,6 +200,22 @@ export default function Navbar() {
               >
                 {label}
               </a>
+              {label === 'Services' && (
+                <div className="navbar__overlay-services" aria-label="Service pages">
+                  {SERVICES.map((service) => (
+                    <a
+                      key={service.slug}
+                      href={getServiceHref(service.slug)}
+                      className="navbar__overlay-service-link"
+                      style={{ '--service-accent': service.accent }}
+                      tabIndex={menuOpen ? 0 : -1}
+                      onClick={closeMenu}
+                    >
+                      {service.label}
+                    </a>
+                  ))}
+                </div>
+              )}
             </li>
           ))}
           <li>

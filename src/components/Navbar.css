@@ -42,6 +42,10 @@
   list-style: none;
 }
 
+.navbar__item {
+  position: relative;
+}
+
 .navbar__link {
   font-family: var(--ui-font);
   font-size: 0.82rem;
@@ -51,6 +55,21 @@
   text-decoration: none;
   transition: color 0.25s ease;
   position: relative;
+}
+
+.navbar__link--services {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.navbar__link--services svg {
+  transition: transform 0.25s ease;
+}
+
+.navbar__item--services:hover .navbar__link--services svg,
+.navbar__item--services:focus-within .navbar__link--services svg {
+  transform: rotate(180deg);
 }
 
 .navbar__link::after {
@@ -70,6 +89,88 @@
 
 .navbar__link:hover::after {
   width: 100%;
+}
+
+.navbar__dropdown {
+  position: absolute;
+  top: calc(100% + 0.95rem);
+  left: 50%;
+  width: 17rem;
+  padding: 0.5rem;
+  background: rgba(10, 10, 10, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.34);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 0.5rem);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.navbar__dropdown::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 1rem;
+}
+
+.navbar__item--services:hover .navbar__dropdown,
+.navbar__item--services:focus-within .navbar__dropdown {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+.navbar__dropdown-link {
+  position: relative;
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.7rem 0.8rem 0.72rem 1rem;
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.82);
+  text-decoration: none;
+  overflow: hidden;
+  transition: background 0.22s ease, color 0.22s ease;
+}
+
+.navbar__dropdown-link::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: var(--service-accent);
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+
+.navbar__dropdown-link span {
+  position: relative;
+  font-family: var(--ui-font);
+  font-size: 0.86rem;
+  line-height: 1.2;
+}
+
+.navbar__dropdown-link small {
+  position: relative;
+  font-family: var(--ui-font);
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.42);
+  line-height: 1.2;
+}
+
+.navbar__dropdown-link:hover,
+.navbar__dropdown-link:focus-visible {
+  background: color-mix(in srgb, var(--service-accent), transparent 88%);
+  color: #ffffff;
+}
+
+.navbar__dropdown-link:hover::before,
+.navbar__dropdown-link:focus-visible::before {
+  opacity: 1;
 }
 
 /* CTA button */
@@ -95,6 +196,8 @@
 
 /* Focus states */
 .navbar__link:focus-visible,
+.navbar__dropdown-link:focus-visible,
+.navbar__overlay-service-link:focus-visible,
 .navbar__cta:focus-visible,
 .navbar__hamburger:focus-visible {
   outline: 2px solid var(--accent);
@@ -144,6 +247,11 @@
   text-align: center;
 }
 
+.navbar__overlay-item--services {
+  display: grid;
+  gap: 1rem;
+}
+
 .navbar__overlay-link {
   font-family: var(--display-font);
   font-size: clamp(2rem, 8vw, 3.5rem);
@@ -155,6 +263,31 @@
 
 .navbar__overlay-link:hover {
   color: var(--text-primary);
+}
+
+.navbar__overlay-services {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+  width: min(30rem, calc(100vw - 3rem));
+}
+
+.navbar__overlay-service-link {
+  padding: 0.58rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  font-family: var(--ui-font);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.62);
+  text-decoration: none;
+  transition: border-color 0.24s ease, color 0.24s ease, background 0.24s ease;
+}
+
+.navbar__overlay-service-link:hover,
+.navbar__overlay-service-link:focus-visible {
+  border-color: var(--service-accent);
+  background: color-mix(in srgb, var(--service-accent), transparent 88%);
+  color: #ffffff;
 }
 
 .navbar__overlay-cta {

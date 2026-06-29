@@ -7,7 +7,6 @@ import Preloader    from './components/Preloader';
 import Navbar       from './components/Navbar';
 import Hero         from './sections/Hero';
 import Services     from './sections/Services';
-import Reel         from './sections/Reel';
 import Work         from './sections/Work';
 import About        from './sections/About';
 import Contact      from './sections/Contact';
@@ -84,7 +83,6 @@ export default function App() {
         <main>
           <Hero     animateIn={heroAnimateIn} />
           <Services />
-          <Reel     />
           <Work     />
           <About    />
           <Contact  />

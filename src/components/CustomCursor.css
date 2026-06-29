@@ -15,6 +15,44 @@
   will-change: transform;
 }
 
+.cursor-water {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 112px;
+  height: 112px;
+  border-radius: 46% 54% 62% 38% / 42% 46% 54% 58%;
+  background:
+    radial-gradient(circle at 36% 34%, rgba(255, 255, 255, 0.24), transparent 18%),
+    radial-gradient(circle at 58% 62%, rgba(71, 215, 255, 0.2), transparent 42%),
+    rgba(155, 93, 229, 0.12);
+  filter: blur(7px) saturate(1.35);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 9996;
+  opacity: 0.78;
+  will-change: transform, border-radius;
+  animation: cursorWaterMorph 3.8s ease-in-out infinite;
+}
+
+.cursor-ripples {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+  overflow: hidden;
+}
+
+.cursor-ripple {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgba(71, 215, 255, 0.46);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.25);
+  animation: cursorRipple 0.9s ease-out forwards;
+}
+
 .cursor-ring {
   position: fixed;
   top: 0;
@@ -44,4 +82,48 @@
      We compensate via negative margin so the translate stays correct. */
   margin-left: -27px;  /* 18 - 45 = -27 */
   margin-top:  -27px;
+}
+
+@keyframes cursorWaterMorph {
+  0% {
+    border-radius: 46% 54% 62% 38% / 42% 46% 54% 58%;
+  }
+
+  33% {
+    border-radius: 58% 42% 46% 54% / 50% 62% 38% 50%;
+  }
+
+  66% {
+    border-radius: 42% 58% 52% 48% / 62% 40% 60% 38%;
+  }
+
+  100% {
+    border-radius: 46% 54% 62% 38% / 42% 46% 54% 58%;
+  }
+}
+
+@keyframes cursorRipple {
+  0% {
+    opacity: 0.75;
+    transform: translate(-50%, -50%) scale(0.25);
+  }
+
+  70% {
+    opacity: 0.28;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(7);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-water {
+    animation: none;
+  }
+
+  .cursor-ripple {
+    display: none;
+  }
 }

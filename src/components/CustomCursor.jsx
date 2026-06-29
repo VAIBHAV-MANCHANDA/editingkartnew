@@ -13,6 +13,8 @@ import './CustomCursor.css';
 export default function CustomCursor() {
   const dotRef  = useRef(null);
   const ringRef = useRef(null);
+  const waterRef = useRef(null);
+  const ripplesRef = useRef(null);
 
   // Track mobile state reactively so re-renders on resize work
   const [isMobile, setIsMobile] = useState(
@@ -30,9 +32,11 @@ export default function CustomCursor() {
   useEffect(() => {
     if (isMobile) return;
 
-    const dot  = dotRef.current;
+    const dot = dotRef.current;
     const ring = ringRef.current;
-    if (!dot || !ring) return;
+    const water = waterRef.current;
+    const ripples = ripplesRef.current;
+    if (!dot || !ring || !water || !ripples) return;
 
     // Hide native cursor
     document.body.style.cursor = 'none';
@@ -44,10 +48,23 @@ export default function CustomCursor() {
     // Lerped position — ring follows this
     let ringX = mouseX;
     let ringY = mouseY;
+    let waterX = mouseX;
+    let waterY = mouseY;
+    let rippleTick = 0;
 
     function onMouseMove(e) {
       mouseX = e.clientX;
       mouseY = e.clientY;
+
+      rippleTick += 1;
+      if (rippleTick % 5 !== 0) return;
+
+      const ripple = document.createElement('span');
+      ripple.className = 'cursor-ripple';
+      ripple.style.left = `${mouseX}px`;
+      ripple.style.top = `${mouseY}px`;
+      ripples.appendChild(ripple);
+      ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
     }
     window.addEventListener('mousemove', onMouseMove);
 
@@ -60,6 +77,10 @@ export default function CustomCursor() {
       ringX += (mouseX - ringX) * 0.12;
       ringY += (mouseY - ringY) * 0.12;
       ring.style.transform = `translate(${ringX - 18}px, ${ringY - 18}px)`;
+
+      waterX += (mouseX - waterX) * 0.08;
+      waterY += (mouseY - waterY) * 0.08;
+      water.style.transform = `translate(${waterX - 56}px, ${waterY - 56}px)`;
     }
     gsap.ticker.add(onTick);
 
@@ -94,6 +115,8 @@ export default function CustomCursor() {
     <>
       <div ref={dotRef}  className="cursor-dot"  aria-hidden="true" />
       <div ref={ringRef} className="cursor-ring" aria-hidden="true" />
+      <div ref={waterRef} className="cursor-water" aria-hidden="true" />
+      <div ref={ripplesRef} className="cursor-ripples" aria-hidden="true" />
     </>
   );
 }
