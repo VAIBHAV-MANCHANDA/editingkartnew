@@ -4,6 +4,7 @@ import { Menu, X } from 'lucide-react';
 import './Navbar.css';
 
 const NAV_LINKS = [
+  { label: 'Services', href: '#services' },
   { label: 'Work', href: '#work' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
@@ -21,6 +22,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
+  const isHomePage = typeof window !== 'undefined' && window.location.pathname === '/';
 
   // Scroll-based hide/show + background transition
   useEffect(() => {
@@ -87,6 +89,18 @@ export default function Navbar() {
       } else {
         target.scrollIntoView({ behavior: 'smooth' });
       }
+      return true;
+    }
+    return false;
+  }
+
+  function getHref(href) {
+    return isHomePage ? href : `/${href}`;
+  }
+
+  function handleAnchorClick(e, href) {
+    if (scrollTo(href)) {
+      e.preventDefault();
     }
   }
 
@@ -103,9 +117,9 @@ export default function Navbar() {
           {NAV_LINKS.map(({ label, href }) => (
             <li key={label}>
               <a
-                href={href}
+                href={getHref(href)}
                 className="navbar__link"
-                onClick={(e) => { e.preventDefault(); scrollTo(href); }}
+                onClick={(e) => handleAnchorClick(e, href)}
               >
                 {label}
               </a>
@@ -114,8 +128,8 @@ export default function Navbar() {
         </ul>
 
         {/* CTA button */}
-        <a href="#contact" className="navbar__cta" data-cursor="hover"
-          onClick={(e) => { e.preventDefault(); scrollTo('#contact'); }}>
+        <a href={getHref('#contact')} className="navbar__cta" data-cursor="hover"
+          onClick={(e) => handleAnchorClick(e, '#contact')}>
           Get in Touch
         </a>
 
@@ -139,10 +153,10 @@ export default function Navbar() {
           {NAV_LINKS.map(({ label, href }) => (
             <li key={label}>
               <a
-                href={href}
+                href={getHref(href)}
                 className="navbar__overlay-link"
                 tabIndex={menuOpen ? 0 : -1}
-                onClick={(e) => { e.preventDefault(); scrollTo(href); }}
+                onClick={(e) => handleAnchorClick(e, href)}
               >
                 {label}
               </a>
@@ -150,10 +164,10 @@ export default function Navbar() {
           ))}
           <li>
             <a
-              href="#contact"
+              href={getHref('#contact')}
               className="navbar__overlay-cta"
               tabIndex={menuOpen ? 0 : -1}
-              onClick={(e) => { e.preventDefault(); scrollTo('#contact'); }}
+              onClick={(e) => handleAnchorClick(e, '#contact')}
             >
               Get in Touch
             </a>

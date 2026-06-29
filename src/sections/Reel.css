@@ -1,28 +1,48 @@
 /* ============================================================
-   Reel Section — 300vh scroll-driven expansion
+   Reel Section — clip-path scroll expansion
    ============================================================ */
 
+/* Tall scroll track — gives the scrub animation enough distance */
 .reel {
   position: relative;
-  height: 300vh;
-  background: #0d0d0d;
+  height: 400vh;
+  background: #0a0a0a;
 }
 
-/* Sticky inner — stays fixed during scroll travel */
+/* Sticky inner — pins to viewport top while section scrolls past */
 .reel__sticky {
   position: sticky;
   top: 0;
   height: 100vh;
   overflow: hidden;
+  background: #0a0a0a;
+}
+
+/* ── Video ──────────────────────────────────────────────── */
+/* Always covers the full sticky container.
+   GSAP animates clip-path to reveal it progressively. */
+.reel__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* clip-path is set inline by GSAP — starts as small left window */
+  will-change: clip-path;
 }
 
 /* ── "Our Reel" label ───────────────────────────────────── */
 .reel__label {
   position: absolute;
-  bottom: 12vh;
-  left: clamp(1.5rem, 6vw, 7rem);
+  /* Sits just below the center of the small video window.
+     Video window vertical center = 50vh; height = 60vh, so bottom = ~80vh.
+     Label sits at bottom: 14vh */
+  bottom: 14vh;
+  left: clamp(1.5rem, 8vw, 8rem);
   z-index: 2;
   pointer-events: none;
+  /* opacity driven by JS */
 }
 
 .reel__label-eyebrow {
@@ -32,7 +52,7 @@
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .reel__label-title {
@@ -42,9 +62,10 @@
   letter-spacing: -0.03em;
   color: var(--text-primary);
   line-height: 1;
+  margin: 0;
 }
 
-/* ── Overlay text (fades in at 60% progress) ────────────── */
+/* ── Fullscreen overlay (fades in at 70%+) ──────────────── */
 .reel__overlay-text {
   position: absolute;
   bottom: 2.5rem;
@@ -54,7 +75,7 @@
   font-size: clamp(0.7rem, 1.1vw, 0.85rem);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.8);
   pointer-events: none;
 }
 
@@ -62,10 +83,13 @@
 @media (max-width: 768px) {
   .reel__label {
     bottom: auto;
-    top: 8vh;
+    top: auto;
+    /* Position below the small mobile video window (centered, 50vh tall) */
+    bottom: 8vh;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
+    width: max-content;
   }
 
   .reel__overlay-text {

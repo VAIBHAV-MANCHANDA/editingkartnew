@@ -2,26 +2,25 @@
    VideoStory — scroll-driven video expansion
    ============================================================ */
 
+/* Full-bleed wrapper fills the sticky container */
 .video-story {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 1;
 }
 
-/* The animating frame — GSAP writes width/height/left/top/borderRadius inline */
+/* The frame — GSAP sets width/height/left/top/borderRadius as inline pixels */
 .video-story__frame {
   position: absolute;
-  left: 10vw;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 35vw;
-  height: 55vh;
-  border-radius: 12px;
   overflow: hidden;
   will-change: width, height, left, top, border-radius;
   background: #111;
+  /* No transform here — GSAP sets everything as px values to avoid conflicts */
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.5);
 }
 
+/* Video fills the frame */
 .video-story__video {
   width: 100%;
   height: 100%;
@@ -29,7 +28,7 @@
   display: block;
 }
 
-/* Placeholder when no video asset is available */
+/* Placeholder gradient when no video file exists */
 .video-story__placeholder {
   width: 100%;
   height: 100%;
@@ -45,14 +44,4 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--text-tertiary);
-}
-
-/* ── Mobile ─────────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .video-story__frame {
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90vw;
-    height: 50vh;
-  }
 }

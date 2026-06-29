@@ -2,7 +2,6 @@ import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ProjectCard from '../components/ProjectCard';
-import TextReveal from '../components/TextReveal';
 import './Work.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -70,14 +69,47 @@ const PROJECTS = [
  */
 export default function Work() {
   const sectionRef = useRef(null);
+  const headerRef  = useRef(null);
   const gridRef    = useRef(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const cards = gridRef.current?.querySelectorAll('.project-card');
-      if (!cards?.length) return;
+    let headerObserver;
 
+    const ctx = gsap.context(() => {
+      const headerItems = headerRef.current?.querySelectorAll('.work__reveal');
+      const cards = gridRef.current?.querySelectorAll('.project-card');
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (headerItems?.length) {
+        gsap.set(headerItems, { opacity: 0, y: 42 });
+
+        const revealHeader = () => {
+          gsap.to(headerItems, {
+            opacity: 1,
+            y: 0,
+            duration: prefersReduced ? 0.001 : 0.9,
+            stagger: prefersReduced ? 0 : 0.12,
+            ease: 'power3.out',
+          });
+        };
+
+        if (prefersReduced || !('IntersectionObserver' in window)) {
+          revealHeader();
+        } else {
+          headerObserver = new IntersectionObserver(
+            ([entry]) => {
+              if (!entry.isIntersecting) return;
+              revealHeader();
+              headerObserver?.disconnect();
+            },
+            { threshold: 0.35 },
+          );
+
+          headerObserver.observe(headerRef.current);
+        }
+      }
+
+      if (!cards?.length) return;
 
       gsap.from(cards, {
         opacity: 0,
@@ -91,9 +123,14 @@ export default function Work() {
           once: true,
         },
       });
+
+      requestAnimationFrame(() => ScrollTrigger.refresh());
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      headerObserver?.disconnect();
+      ctx.revert();
+    };
   }, []);
 
   return (
@@ -103,13 +140,13 @@ export default function Work() {
       ref={sectionRef}
       aria-label="Selected work"
     >
-      <div className="work__header">
-        <TextReveal tag="h2" className="work__heading">
+      <div ref={headerRef} className="work__header">
+        <h2 className="work__heading work__reveal">
           Selected Work
-        </TextReveal>
-        <TextReveal tag="p" className="work__subheading" delay={0.1}>
+        </h2>
+        <p className="work__subheading work__reveal">
           A selection of projects across brand film, motion graphics, and color.
-        </TextReveal>
+        </p>
       </div>
 
       <div ref={gridRef} className="work__grid">

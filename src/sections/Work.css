@@ -28,6 +28,12 @@
   max-width: 480px;
 }
 
+.work__reveal {
+  opacity: 0;
+  transform: translateY(42px);
+  will-change: transform, opacity;
+}
+
 /* ── Grid ───────────────────────────────────────────────── */
 .work__grid {
   display: grid;
