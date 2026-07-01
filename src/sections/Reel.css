@@ -1,26 +1,21 @@
 /* ============================================================
-   Reel Section — clip-path scroll expansion
+   Reel Section - full-screen showreel
    ============================================================ */
 
-/* Tall scroll track — gives the scrub animation enough distance */
 .reel {
   position: relative;
-  height: 400vh;
+  min-height: 100svh;
   background: #0a0a0a;
+  overflow: hidden;
 }
 
-/* Sticky inner — pins to viewport top while section scrolls past */
 .reel__sticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
+  position: relative;
+  min-height: 100svh;
   overflow: hidden;
   background: #0a0a0a;
 }
 
-/* ── Video ──────────────────────────────────────────────── */
-/* Always covers the full sticky container.
-   GSAP animates clip-path to reveal it progressively. */
 .reel__video {
   position: absolute;
   inset: 0;
@@ -28,71 +23,55 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  /* clip-path is set inline by GSAP — starts as small left window */
-  will-change: clip-path;
 }
 
-/* ── "Our Reel" label ───────────────────────────────────── */
-.reel__label {
+.reel__sticky::after {
+  content: '';
   position: absolute;
-  /* Sits just below the center of the small video window.
-     Video window vertical center = 50vh; height = 60vh, so bottom = ~80vh.
-     Label sits at bottom: 14vh */
-  bottom: 14vh;
-  left: clamp(1.5rem, 8vw, 8rem);
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(10, 10, 10, 0.22), transparent 34%),
+    linear-gradient(0deg, rgba(10, 10, 10, 0.5), transparent 42%);
+}
+
+.reel__caption {
+  position: absolute;
+  left: clamp(1rem, 5vw, 4rem);
+  bottom: clamp(1.25rem, 5vw, 4rem);
   z-index: 2;
+  max-width: min(520px, calc(100vw - 2rem));
   pointer-events: none;
-  /* opacity driven by JS */
 }
 
-.reel__label-eyebrow {
+.reel__caption span {
   display: block;
-  font-family: var(--ui-font);
-  font-size: 0.7rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--accent);
   margin-bottom: 0.6rem;
-}
-
-.reel__label-title {
-  font-family: var(--display-font);
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  color: var(--text-primary);
-  line-height: 1;
-  margin: 0;
-}
-
-/* ── Fullscreen overlay (fades in at 70%+) ──────────────── */
-.reel__overlay-text {
-  position: absolute;
-  bottom: 2.5rem;
-  right: clamp(1.5rem, 4vw, 4rem);
-  z-index: 3;
   font-family: var(--ui-font);
-  font-size: clamp(0.7rem, 1.1vw, 0.85rem);
-  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.8);
-  pointer-events: none;
+  color: #ffd166;
 }
 
-/* ── Mobile ─────────────────────────────────────────────── */
+.reel__caption p {
+  margin: 0;
+  font-family: var(--display-font);
+  font-size: clamp(2.4rem, 7vw, 6.5rem);
+  line-height: 0.95;
+  letter-spacing: 0;
+  color: var(--text-primary);
+}
+
 @media (max-width: 768px) {
-  .reel__label {
-    bottom: auto;
-    top: auto;
-    /* Position below the small mobile video window (centered, 50vh tall) */
-    bottom: 8vh;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    width: max-content;
+  .reel,
+  .reel__sticky {
+    min-height: 86svh;
   }
 
-  .reel__overlay-text {
-    display: none;
+  .reel__caption {
+    left: 1rem;
+    bottom: 1.25rem;
   }
 }
