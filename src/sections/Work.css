@@ -13,8 +13,8 @@
 }
 
 .work__heading {
-  font-family: var(--display-font);
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-family: var(--site-font);
+  font-size: var(--type-display);
   font-weight: 500;
   letter-spacing: -0.03em;
   color: var(--text-primary);
@@ -22,8 +22,8 @@
 }
 
 .work__subheading {
-  font-family: var(--ui-font);
-  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  font-family: var(--site-font);
+  font-size: var(--type-body);
   color: var(--text-secondary);
   max-width: 620px;
 }
@@ -60,27 +60,23 @@
 .work__shorts-copy h3,
 .work-video-card__copy h3 {
   margin: 0.55rem 0 0.75rem;
-  font-size: clamp(1.35rem, 3vw, 2.4rem);
+  font-size: var(--type-display);
   letter-spacing: 0;
-}
-
-.work-video-card__copy h3 {
-  font-size: clamp(1.15rem, 1.8vw, 1.55rem);
 }
 
 .work__featured-copy p,
 .work__shorts-copy p,
 .work-video-card__copy p {
   max-width: 42rem;
-  font-size: clamp(0.85rem, 1vw, 0.98rem);
+  font-size: var(--type-body);
 }
 
 .work__eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--ui-font);
-  font-size: 0.7rem;
+  font-family: var(--site-font);
+  font-size: var(--type-body);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #7bdff2;
@@ -159,18 +155,18 @@
   justify-content: space-between;
   gap: 1rem;
   padding-top: 0.85rem;
-  font-family: var(--ui-font);
+  font-family: var(--site-font);
 }
 
 .work-short-card__meta span {
-  font-size: 0.7rem;
+  font-size: var(--type-body);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-secondary);
 }
 
 .work-short-card__meta strong {
-  font-size: 0.95rem;
+  font-size: var(--type-body);
   font-weight: 500;
   color: var(--text-primary);
 }

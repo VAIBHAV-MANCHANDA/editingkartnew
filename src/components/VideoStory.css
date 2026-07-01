@@ -39,8 +39,8 @@
 }
 
 .video-story__placeholder-label {
-  font-family: var(--ui-font);
-  font-size: 0.75rem;
+  font-family: var(--site-font);
+  font-size: var(--type-body);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--text-tertiary);

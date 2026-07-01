@@ -36,8 +36,8 @@
 
 /* Eyebrow label */
 .hero__eyebrow {
-  font-family: var(--ui-font);
-  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+  font-family: var(--site-font);
+  font-size: var(--type-body);
   font-weight: 500;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -47,10 +47,10 @@
 
 /* Heading */
 .hero__heading {
-  font-family: var(--display-font);
-  font-size: clamp(3rem, 7vw, 8rem);
+  font-family: var(--site-font);
+  font-size: var(--type-display);
   font-weight: 500;
-  line-height: 1;
+  line-height: 1.12;
   letter-spacing: -0.03em;
   color: var(--text-primary);
   display: block;
@@ -59,19 +59,22 @@
 
 .hero__heading-line {
   display: block;
+  line-height: 1.12;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
 }
 
-/* Second heading line gets an italic accent treatment */
+/* Second heading line gets a softer accent treatment */
 .hero__heading-line--accent {
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.72);
+  font-style: normal;
+  color: rgba(255, 255, 255, 0.88);
 }
 
 /* Subtitle */
 .hero__subtitle {
-  font-family: var(--ui-font);
-  font-size: clamp(0.75rem, 1.3vw, 0.95rem);
-  font-weight: 400;
+  font-family: var(--site-font);
+  font-size: var(--type-body);
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-secondary);
@@ -83,11 +86,11 @@
   bottom: 2rem;
   right: clamp(1.5rem, 3vw, 3rem);
   z-index: 2;
-  font-family: var(--ui-font);
-  font-size: 0.7rem;
+  font-family: var(--site-font);
+  font-size: var(--type-body);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   pointer-events: none;
 }
 
@@ -106,17 +109,17 @@
 }
 
 .hero__scroll-label {
-  font-family: var(--ui-font);
-  font-size: 0.65rem;
+  font-family: var(--site-font);
+  font-size: var(--type-body);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 
 .hero__scroll-line {
   width: 1px;
   height: 40px;
-  background: var(--text-tertiary);
+  background: rgba(255, 255, 255, 0.34);
   overflow: hidden;
 }
 
@@ -141,10 +144,6 @@
     padding-left: clamp(1.5rem, 5vw, 2.5rem);
     padding-right: clamp(1.5rem, 5vw, 2.5rem);
     text-align: left;
-  }
-
-  .hero__heading {
-    font-size: clamp(2.5rem, 10vw, 4rem);
   }
 
   .hero__tag {

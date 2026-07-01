@@ -20,8 +20,8 @@
 }
 
 .preloader__logo-text {
-  font-family: var(--display-font);
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-family: var(--site-font);
+  font-size: var(--type-display);
   font-weight: 500;
   letter-spacing: -0.02em;
   color: var(--text-primary);
@@ -45,8 +45,8 @@
 
 /* Counter */
 .preloader__counter {
-  font-family: var(--ui-font);
-  font-size: 0.75rem;
+  font-family: var(--site-font);
+  font-size: var(--type-body);
   letter-spacing: 0.2em;
   color: var(--text-secondary);
   font-variant-numeric: tabular-nums;

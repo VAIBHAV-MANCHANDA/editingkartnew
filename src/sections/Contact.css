@@ -36,8 +36,8 @@
 
 /* Heading — two lines */
 .contact__heading {
-  font-family: var(--display-font);
-  font-size: clamp(2.5rem, 8vw, 7rem);
+  font-family: var(--site-font);
+  font-size: var(--type-display);
   font-weight: 500;
   letter-spacing: -0.04em;
   color: var(--text-primary);
@@ -47,14 +47,14 @@
 }
 
 .contact__heading--accent {
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.6);
+  font-style: normal;
+  color: rgba(255, 255, 255, 0.82);
 }
 
 /* Email link */
 .contact__email {
-  font-family: var(--display-font);
-  font-size: clamp(1.1rem, 2.5vw, 2rem);
+  font-family: var(--site-font);
+  font-size: var(--type-body);
   color: var(--text-primary);
   text-decoration: none;
   position: relative;
@@ -100,9 +100,9 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  border: 1px solid var(--text-tertiary);
+  border: 1px solid rgba(255, 255, 255, 0.32);
   border-radius: 50%;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.84);
   text-decoration: none;
   transition: border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
@@ -123,21 +123,18 @@
   position: relative;
   z-index: 1;
   padding: 2rem 0;
-  border-top: 1px solid var(--text-tertiary);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
   margin-top: clamp(4rem, 8vw, 6rem);
 }
 
 .contact__footer p {
-  font-family: var(--ui-font);
-  font-size: 0.75rem;
+  font-family: var(--site-font);
+  font-size: var(--type-body);
   letter-spacing: 0.12em;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   margin: 0;
 }
 
 /* ── Mobile ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .contact__heading {
-    font-size: clamp(2.2rem, 10vw, 4rem);
-  }
 }

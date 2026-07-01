@@ -25,8 +25,8 @@
 
 /* Logo */
 .navbar__logo {
-  font-family: var(--display-font);
-  font-size: 1.15rem;
+  font-family: var(--site-font);
+  font-size: var(--type-body);
   font-weight: 500;
   letter-spacing: -0.01em;
   color: var(--text-primary);
@@ -47,9 +47,9 @@
 }
 
 .navbar__link {
-  font-family: var(--ui-font);
-  font-size: 0.82rem;
-  font-weight: 400;
+  font-family: var(--site-font);
+  font-size: var(--type-body);
+  font-weight: 500;
   letter-spacing: 0.06em;
   color: var(--text-secondary);
   text-decoration: none;
@@ -97,8 +97,8 @@
   left: 50%;
   width: 17rem;
   padding: 0.5rem;
-  background: rgba(10, 10, 10, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(10, 10, 10, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 6px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -131,7 +131,7 @@
   gap: 0.15rem;
   padding: 0.7rem 0.8rem 0.72rem 1rem;
   border-radius: 4px;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.94);
   text-decoration: none;
   overflow: hidden;
   transition: background 0.22s ease, color 0.22s ease;
@@ -149,16 +149,17 @@
 
 .navbar__dropdown-link span {
   position: relative;
-  font-family: var(--ui-font);
-  font-size: 0.86rem;
+  font-family: var(--site-font);
+  font-size: var(--type-body);
+  font-weight: 500;
   line-height: 1.2;
 }
 
 .navbar__dropdown-link small {
   position: relative;
-  font-family: var(--ui-font);
-  font-size: 0.68rem;
-  color: rgba(255, 255, 255, 0.42);
+  font-family: var(--site-font);
+  font-size: var(--type-body);
+  color: rgba(255, 255, 255, 0.72);
   line-height: 1.2;
 }
 
@@ -175,8 +176,8 @@
 
 /* CTA button */
 .navbar__cta {
-  font-family: var(--ui-font);
-  font-size: 0.78rem;
+  font-family: var(--site-font);
+  font-size: var(--type-body);
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -253,10 +254,10 @@
 }
 
 .navbar__overlay-link {
-  font-family: var(--display-font);
-  font-size: clamp(2rem, 8vw, 3.5rem);
+  font-family: var(--site-font);
+  font-size: var(--type-display);
   font-weight: 500;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.84);
   text-decoration: none;
   transition: color 0.25s ease;
 }
@@ -274,11 +275,11 @@
 
 .navbar__overlay-service-link {
   padding: 0.58rem 0.7rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 4px;
-  font-family: var(--ui-font);
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.62);
+  font-family: var(--site-font);
+  font-size: var(--type-body);
+  color: rgba(255, 255, 255, 0.82);
   text-decoration: none;
   transition: border-color 0.24s ease, color 0.24s ease, background 0.24s ease;
 }
@@ -291,8 +292,8 @@
 }
 
 .navbar__overlay-cta {
-  font-family: var(--ui-font);
-  font-size: 0.85rem;
+  font-family: var(--site-font);
+  font-size: var(--type-body);
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;

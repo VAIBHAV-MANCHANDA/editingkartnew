@@ -29,8 +29,8 @@
 
 /* ── Heading ────────────────────────────────────────────── */
 .about__heading {
-  font-family: var(--display-font);
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-family: var(--site-font);
+  font-size: var(--type-display);
   font-weight: 500;
   letter-spacing: -0.03em;
   color: var(--text-primary);
@@ -39,8 +39,8 @@
 
 /* ── Bio ────────────────────────────────────────────────── */
 .about__bio {
-  font-family: var(--ui-font);
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-family: var(--site-font);
+  font-size: var(--type-body);
   color: var(--text-secondary);
   line-height: 1.8;
   max-width: 640px;
@@ -67,8 +67,8 @@
 }
 
 .about__stat-number {
-  font-family: var(--display-font);
-  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-family: var(--site-font);
+  font-size: var(--type-display);
   font-weight: 500;
   letter-spacing: -0.04em;
   color: var(--text-primary);
@@ -78,19 +78,19 @@
 }
 
 .about__stat-suffix {
-  font-family: var(--display-font);
-  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  font-family: var(--site-font);
+  font-size: var(--type-display);
   font-weight: 500;
   color: var(--accent);
   line-height: 1;
 }
 
 .about__stat-label {
-  font-family: var(--ui-font);
-  font-size: 0.75rem;
+  font-family: var(--site-font);
+  font-size: var(--type-body);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   margin: 0;
 }
 

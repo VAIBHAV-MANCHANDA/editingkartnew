@@ -8,17 +8,19 @@
   --accent: #9b5de5;
   --accent-dim: rgba(155, 93, 229, 0.15);
   --text-primary: #ffffff;
-  --text-secondary: #888888;
-  --text-tertiary: #444444;
-  --display-font: 'Playfair Display', 'Georgia', serif;
-  --ui-font: 'Inter', system-ui, -apple-system, sans-serif;
-  --mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  --text-secondary: #b8b8b8;
+  --text-tertiary: #7a7a7a;
+  --site-font: 'Inter', system-ui, -apple-system, sans-serif;
+  --display-font: var(--site-font);
+  --ui-font: var(--site-font);
+  --mono: var(--site-font);
+  --type-body: clamp(0.95rem, 0.9rem + 0.18vw, 1.05rem);
+  --type-display: clamp(2.25rem, 4vw, 4rem);
 
-  font-size: 16px;
   color-scheme: dark;
   color: var(--text-primary);
   background: var(--brand-black);
-  font-family: var(--ui-font);
+  font-family: var(--site-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -44,7 +46,8 @@ body {
   overflow-x: hidden;
   background: var(--brand-black);
   color: var(--text-primary);
-  font-family: var(--ui-font);
+  font-family: var(--site-font);
+  font-size: var(--type-body);
   line-height: 1.6;
 }
 
@@ -56,7 +59,8 @@ body {
 
 /* ── Typography ─────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--display-font);
+  font-family: var(--site-font);
+  font-size: var(--type-display);
   font-weight: 500;
   color: var(--text-primary);
   line-height: 1.1;
@@ -64,6 +68,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
+  font-size: var(--type-body);
   color: var(--text-secondary);
   line-height: 1.7;
 }
@@ -79,7 +84,7 @@ img, video {
 }
 
 button {
-  font-family: var(--ui-font);
+  font-family: var(--site-font);
   cursor: pointer;
   border: none;
   background: none;
